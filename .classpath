@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+  <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER" />
+  <classpathentry kind="src" path="src/java/main" output=".eclipse/classes-main" />
+  <classpathentry kind="src" path="src/java/generated" output=".eclipse/classes-main" />
+  <classpathentry kind="src" path="src/java/test" output=".eclipse/classes-test" />
+  <classpathentry kind="src" path="src/java/systest" output=".eclipse/classes-test" />
+  <classpathentry kind="lib" path="/home/mjc/.ant/cache/jline/jline/jars/jline-2.11.jar" exported="true" />
+  <classpathentry kind="lib" path="/home/mjc/.ant/cache/org.eclipse.jetty/jetty-server/jars/jetty-server-9.2.18.v20160721.jar" exported="true" />
+  <classpathentry kind="lib" path="/home/mjc/.ant/cache/javax.servlet/javax.servlet-api/jars/javax.servlet-api-3.1.0.jar" exported="true" />
+  <classpathentry kind="lib" path="/home/mjc/.ant/cache/org.eclipse.jetty/jetty-http/jars/jetty-http-9.2.18.v20160721.jar" exported="true" />
+  <classpathentry kind="lib" path="/home/mjc/.ant/cache/org.eclipse.jetty/jetty-util/jars/jetty-util-9.2.18.v20160721.jar" exported="true" />
+  <classpathentry kind="lib" path="/home/mjc/.ant/cache/org.eclipse.jetty/jetty-io/jars/jetty-io-9.2.18.v20160721.jar" exported="true" />
+  <classpathentry kind="lib" path="/home/mjc/.ant/cache/org.eclipse.jetty/jetty-servlet/jars/jetty-servlet-9.2.18.v20160721.jar" exported="true" />
+  <classpathentry kind="lib" path="/home/mjc/.ant/cache/org.eclipse.jetty/jetty-security/jars/jetty-security-9.2.18.v20160721.jar" exported="true" />
+  <classpathentry kind="lib" path="/home/mjc/.ant/cache/org.codehaus.jackson/jackson-mapper-asl/jars/jackson-mapper-asl-1.9.11.jar" exported="true" />
+  <classpathentry kind="lib" path="/home/mjc/.ant/cache/org.codehaus.jackson/jackson-core-asl/jars/jackson-core-asl-1.9.11.jar" exported="true" />
+  <classpathentry kind="lib" path="/home/mjc/.ant/cache/org.slf4j/slf4j-api/jars/slf4j-api-1.7.5.jar" exported="true" />
+  <classpathentry kind="lib" path="/home/mjc/.ant/cache/org.slf4j/slf4j-log4j12/jars/slf4j-log4j12-1.7.5.jar" exported="true" />
+  <classpathentry kind="lib" path="/home/mjc/.ant/cache/commons-cli/commons-cli/jars/commons-cli-1.2.jar" exported="true" />
+  <classpathentry kind="lib" path="/home/mjc/.ant/cache/log4j/log4j/bundles/log4j-1.2.17.jar" exported="true" />
+  <classpathentry kind="lib" path="/home/mjc/.ant/cache/io.netty/netty/jars/netty-3.10.5.Final.jar" exported="true" />
+  <classpathentry kind="lib" path="/home/mjc/.ant/cache/junit/junit/jars/junit-4.12.jar" />
+  <classpathentry kind="lib" path="/home/mjc/.ant/cache/org.mockito/mockito-all/jars/mockito-all-1.8.2.jar" />
+  <classpathentry kind="lib" path="/home/mjc/.ant/cache/com.puppycrawl.tools/checkstyle/jars/checkstyle-6.13.jar" />
+  <classpathentry kind="lib" path="/home/mjc/.ant/cache/commons-collections/commons-collections/jars/commons-collections-3.2.2.jar" />
+  <classpathentry kind="output" path=".eclipse/classes-main" />
+</classpath>
