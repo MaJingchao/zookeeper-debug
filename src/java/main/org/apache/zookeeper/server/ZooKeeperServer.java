@@ -104,7 +104,7 @@ public class ZooKeeperServer implements SessionExpirer, ServerStats.Provider {
     protected volatile State state = State.INITIAL;
 
     protected enum State {
-        INITIAL, RUNNING, SHUTDOWN, ERROR;
+        INITIAL, RUNNING, SHUTDOWN, ERROR
     }
 
     /**
@@ -116,7 +116,7 @@ public class ZooKeeperServer implements SessionExpirer, ServerStats.Provider {
     private final AtomicInteger requestsInProcess = new AtomicInteger(0);
     final List<ChangeRecord> outstandingChanges = new ArrayList<ChangeRecord>();
     // this data structure must be accessed under the outstandingChanges lock
-    final HashMap<String, ChangeRecord> outstandingChangesForPath =
+    final Map<String, ChangeRecord> outstandingChangesForPath =
         new HashMap<String, ChangeRecord>();
 
     protected ServerCnxnFactory serverCnxnFactory;
@@ -229,7 +229,7 @@ public class ZooKeeperServer implements SessionExpirer, ServerStats.Provider {
     }
 
     /**
-     * Default constructor, relies on the config for its agrument values
+     * Default constructor, relies on the config for its argument values
      *
      * @throws IOException
      */
@@ -285,7 +285,7 @@ public class ZooKeeperServer implements SessionExpirer, ServerStats.Provider {
         }
         
         // Clean up dead sessions
-        LinkedList<Long> deadSessions = new LinkedList<Long>();
+        List<Long> deadSessions = new LinkedList<Long>();
         for (Long session : zkDb.getSessions()) {
             if (zkDb.getSessionWithTimeOuts().get(session) == null) {
                 deadSessions.add(session);
@@ -301,9 +301,13 @@ public class ZooKeeperServer implements SessionExpirer, ServerStats.Provider {
         takeSnapshot();
     }
 
-    public void takeSnapshot(){
+    public void takeSnapshot() {
+        takeSnapshot(false);
+    }
+
+    public void takeSnapshot(boolean syncSnap){
         try {
-            txnLogFactory.save(zkDb.getDataTree(), zkDb.getSessionWithTimeOuts());
+            txnLogFactory.save(zkDb.getDataTree(), zkDb.getSessionWithTimeOuts(), syncSnap);
         } catch (IOException e) {
             LOG.error("Severe unrecoverable error, exiting", e);
             // This is a severe error that we cannot recover from,
@@ -503,7 +507,7 @@ public class ZooKeeperServer implements SessionExpirer, ServerStats.Provider {
         if (zkShutdownHandler != null) {
             zkShutdownHandler.handle(state);
         } else {
-            LOG.error("ZKShutdownHandler is not registered, so ZooKeeper server "
+            LOG.debug("ZKShutdownHandler is not registered, so ZooKeeper server "
                     + "won't take any action on ERROR or SHUTDOWN server state changes");
         }
     }
@@ -1132,6 +1136,10 @@ public class ZooKeeperServer implements SessionExpirer, ServerStats.Provider {
                     String authorizationID = saslServer.getAuthorizationID();
                     LOG.info("adding SASL authorization for authorizationID: " + authorizationID);
                     cnxn.addAuthInfo(new Id("sasl",authorizationID));
+                    if (System.getProperty("zookeeper.superUser") != null && 
+                        authorizationID.equals(System.getProperty("zookeeper.superUser"))) {
+                        cnxn.addAuthInfo(new Id("super", ""));
+                    }
                 }
             }
             catch (SaslException e) {
